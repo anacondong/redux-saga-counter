@@ -1,18 +1,20 @@
 import * as actionTypes from '../actions/actionTypes';
 
+// init state
 const initialState: { counter: number } = {
     counter: 0,
 };
 
-const reducer = ( state = initialState, action: {type: string, counter: number} ): object => {
-    switch ( action.type ) {
+// business Logic
+const reducer = (state = initialState, action: { type: string, counter: number }): object => {
+    switch (action.type) {
         case actionTypes.COUNTER_START:
             return {
-                counter: state.counter - 1 ,
+                counter: state.counter - 1,
             };
         case actionTypes.COUNTING:
             return {
-                counter: state.counter - 1 ,
+                counter: state.counter - 1,
             };
         case actionTypes.SET_COUNTER:
             return {

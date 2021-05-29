@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 
-export const counterStart = (): { type: string } => {
+export const counterStart = (): { type: string } => { // no counting here >> it will counting on Watcher
     return {
         type: actionTypes.COUNTER_START,
     };

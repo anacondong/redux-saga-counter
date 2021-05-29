@@ -22,16 +22,17 @@ function countdown(secs: number) {
     );
 }
 
-export function* startCounterSaga() {
+// worker
+export function* startCounter() {
 
-    const state = yield select();
+    const state = yield select(); // select state
     const counter = state.counter.counter;
-    const chan = yield call(countdown, counter + 1);
+    const chan = yield call(countdown, counter + 1); // call function on top
     try {
         while (true) {
-            let seconds = yield take(chan);
+            let seconds = yield take(chan);// get value
             console.log(seconds);
-            yield put(actions.counting());
+            yield put(actions.counting()); // ** dispatch to update state on redux action
         }
     } finally {
         console.log('countdown terminated');
