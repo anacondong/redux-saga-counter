@@ -1,0 +1,21 @@
+
+Redux it is just a state container that supports the asynchronous approach. When an action occurs, the object sends to the store, after that reducer being called and he refreshes the state.
+In case of asynchronous approach Redux uses middlewares Redux-Saga layers. It runs after the action, but before the reducer being called.
+
+** UI Event >> Action > Redux-Saga > Reducer > State >  Component UI Render
+
+generator function : สามารถถูก pause ถูก resume เมื่อไรก็ได้ตามต้องการ และยังสามารถ return ค่าออกไปได้มากกว่า 1 ครั้งด้วย การเขียนฟังก์ชั่น generator ทำได้โดยการเขียนฟังก์ชั่นที่มีดอกจันทร์หน้าชื่อฟังก์ชั่น (* ออกเสียงว่า ซุปเปอร์สตาร์) >> yield
+
+เมื่อเราใช้ redux-saga โลจิกของการทำงานทุกอย่างจะถูก encapsulate ไว้ใน saga ทั้งหมด ส่วน component จะทำแค่ก็การ dispatch action ปกติ คุณมีหน้าที่สร้าง saga ขึ้นมาเพื่อ watch การ dispatch action ที่เกิดขึ้น (Watcher) แล้วเริ่มทำงานบางอย่าง (Worker) ตามลำดับ
+
+** Component >> dispatch action >> Watcher >> Worker
+
+*Take คือ การสั่งหยุดการทำงานของฟังก์ชั่น generator นั้นแบบชั่วคราว จนกว่าจะได้รับ action ที่กำหนดไว้
+*Call คือ การสั่งให้ประมวลผลฟังก์ชั่นที่ส่งมานั้น (พร้อมพารามิเตอร์) ทันที แต่ถ้าฟังก์ชั่นนั้น return ออกมาเป็น Promise ฟังก์ชั่น generator นี้จะหยุดการทำงานชั่วคราวทันที เพื่อรอผลของ Promise นั้น
+*Put คือ การส่ง action เข้าไปให้สโตว์โดยตรง action ที่ถูกส่งผ่านทาง put จะไม่ถูกดักจับโดยซาก้าอื่นๆอีกแล้ว
+*Select คือ การดึงข้อมูลของ state ออกมาจากสโตว์โดยตรง
+*TakeLatest คล้ายๆ Take แต่ในกรณีที่เข้ามาพร้อมกันหลายครั้ง จะทำการละเว้นผลลัพท์ของครั้งก่อนหน้าทั้งหมด และ return ออกไปแค่ผลลัพท์ล่าสุดเท่านั้น
+*TakeEvery คล้ายๆ TakeLatest แต่จะ return ผลลัพท์ของทุกอันออกไป
+
+Race คือ การสั่งให้ประมวล effects ทั้งหมดพร้อมกัน (เสมือนการแตก thread ทำทุก effects พร้อมกัน) ทันทีที่มี effect ใดเสร็จสิ้นก่อน effects ที่เหลืออื่นๆจะถูกยกเลิกทันที
+Fork คือ การสั่งประมวลผลฟังก์ชั่นที่ส่งไปเป็นพารามิเตอร์เลยทันที โดยปราศจากการปิดกั้นใดๆ (เสมือนการแตก thread มาอีก thread เพื่อทำงานนั้นทันที)
