@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import logger from 'redux-logger';
 import { watchCounter } from './sagas/index';
 import { counterReducer } from './reducers';
 
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
 
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware,logger));
 
 sagaMiddleware.run(watchCounter);
 
