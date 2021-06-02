@@ -1,10 +1,14 @@
 
-Redux it is just a state container that supports the asynchronous approach. When an action occurs, the object sends to the store, after that reducer being called and he refreshes the state.
-In case of asynchronous approach Redux uses middlewares Redux-Saga layers. It runs after the action, but before the reducer being called.
+Redux-saga it is just a state container that supports the asynchronous approach. When an action occurs,
+the object sends to the store, 
+after that reducer being called and he refreshes the state.
+In case of asynchronous approach Redux uses middlewares Redux-Saga layers. 
+It runs after the action, but before the reducer being called.
 
 ** UI Event >> Action > Redux-Saga > Reducer > State >  Component UI Render
 
-generator function : สามารถถูก pause ถูก resume เมื่อไรก็ได้ตามต้องการ และยังสามารถ return ค่าออกไปได้มากกว่า 1 ครั้งด้วย การเขียนฟังก์ชั่น generator ทำได้โดยการเขียนฟังก์ชั่นที่มีดอกจันทร์หน้าชื่อฟังก์ชั่น (* ออกเสียงว่า ซุปเปอร์สตาร์) >> yield
+generator function : สามารถถูก pause ถูก resume เมื่อไรก็ได้ตามต้องการ และยังสามารถ 
+return ค่าออกไปได้มากกว่า 1 ครั้งด้วย การเขียนฟังก์ชั่น generator ทำได้โดยการเขียนฟังก์ชั่นที่มีดอกจันทร์หน้าชื่อฟังก์ชั่น (* ออกเสียงว่า ซุปเปอร์สตาร์) >> yield
 
 เมื่อเราใช้ redux-saga โลจิกของการทำงานทุกอย่างจะถูก encapsulate ไว้ใน saga ทั้งหมด ส่วน component จะทำแค่ก็การ dispatch action ปกติ คุณมีหน้าที่สร้าง saga ขึ้นมาเพื่อ watch การ dispatch action ที่เกิดขึ้น (Watcher) แล้วเริ่มทำงานบางอย่าง (Worker) ตามลำดับ
 

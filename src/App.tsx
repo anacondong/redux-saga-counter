@@ -24,6 +24,13 @@ const App = () => {
   return (
     <>
       <h2>simple counter</h2>
+
+      <h1 style={{
+        textAlign: 'center'
+      }}>
+        {counter}
+      </h1>
+
       <input ref={counterInput} placeholder='set counter value' type='number' />
       <button style={{
         margin: '10px'
@@ -33,11 +40,7 @@ const App = () => {
         Set
       </button>
       <br />
-      <p style={{
-        margin: '10px'
-      }}>
-        {counter}
-      </p>
+      
       <button onClick={countDownOnClick}>count Down</button>
     </>
   );
